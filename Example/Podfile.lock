@@ -1,0 +1,16 @@
+PODS:
+  - ScrollStackView (0.1.0)
+
+DEPENDENCIES:
+  - ScrollStackView (from `../`)
+
+EXTERNAL SOURCES:
+  ScrollStackView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ScrollStackView: 964df37e3c6f73ab3b7f3a911baf70b037ea22b0
+
+PODFILE CHECKSUM: b57de31b0de47ea7320c022052f40be594267f90
+
+COCOAPODS: 1.8.4

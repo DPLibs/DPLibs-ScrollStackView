@@ -1,0 +1,6 @@
+framework module ScrollStackView {
+  umbrella header "ScrollStackView-umbrella.h"
+
+  export *
+  module * { export * }
+}

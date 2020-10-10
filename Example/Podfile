@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ScrollStackView_Example' do
+  pod 'ScrollStackView', :path => '../'
+
+  target 'ScrollStackView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
