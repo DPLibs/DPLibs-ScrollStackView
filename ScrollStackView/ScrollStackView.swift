@@ -6,16 +6,25 @@ open class ScrollStackView: UIView {
     public let scrollView = UIScrollView()
     public let stackView = UIStackView()
     
+    public var axis: NSLayoutConstraint.Axis = .horizontal {
+        didSet {
+            self.stackView.axis = self.axis
+            self.setupViews()
+        }
+    }
+    
     public init(axis: NSLayoutConstraint.Axis) {
         super.init(frame: .zero)
-        self.setupViews(axis: axis)
+        self.axis = axis
+        self.setupViews()
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.setupViews()
     }
     
-    open func setupViews(axis: NSLayoutConstraint.Axis) {
+    open func setupViews() {
         self.scrollView.removeFromSuperview()
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.scrollView)
@@ -28,7 +37,7 @@ open class ScrollStackView: UIView {
         
         self.stackView.removeFromSuperview()
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
-        self.stackView.axis = axis
+        self.stackView.axis = self.axis
         self.scrollView.addSubview(self.stackView)
         NSLayoutConstraint.activate([
             self.stackView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
@@ -37,7 +46,7 @@ open class ScrollStackView: UIView {
             self.stackView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor)
         ])
         
-        switch axis {
+        switch self.axis {
         case .horizontal:
             NSLayoutConstraint.activate([
                 self.scrollView.heightAnchor.constraint(equalTo: self.heightAnchor),
