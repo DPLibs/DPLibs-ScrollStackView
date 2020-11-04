@@ -59,21 +59,23 @@ open class ScrollStackView: UIView {
         self.scrollView.addSubview(self.stackView)
         NSLayoutConstraint.activate([
             self.stackView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor, constant: self.stackInsets.left),
-            self.stackView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor, constant: self.stackInsets.right),
+            self.stackView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor, constant: -self.stackInsets.right),
             self.stackView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: self.stackInsets.top),
-            self.stackView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: self.stackInsets.bottom)
+            self.stackView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: -self.stackInsets.bottom)
         ])
         
         switch self.axis {
         case .horizontal:
+            let constant = -(self.stackInsets.top + self.stackInsets.bottom)
             NSLayoutConstraint.activate([
                 self.scrollView.heightAnchor.constraint(equalTo: self.heightAnchor),
-                self.stackView.heightAnchor.constraint(equalTo: self.heightAnchor)
+                self.stackView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: constant)
             ])
         case .vertical:
+            let constant = -(self.stackInsets.left + self.stackInsets.right)
             NSLayoutConstraint.activate([
                 self.scrollView.widthAnchor.constraint(equalTo: self.widthAnchor),
-                self.stackView.widthAnchor.constraint(equalTo: self.widthAnchor)
+                self.stackView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: constant)
             ])
         @unknown default:
             return
@@ -81,3 +83,4 @@ open class ScrollStackView: UIView {
     }
     
 }
+
