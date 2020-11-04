@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ScrollStackView'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'Scroll Stack View'
   s.description      = 'A set of useful utilities'
   s.homepage         = 'https://github.com/DPLibs/ScrollStackView'

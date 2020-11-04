@@ -13,6 +13,24 @@ open class ScrollStackView: UIView {
         }
     }
     
+    public var spacing: CGFloat = 0 {
+        didSet {
+            self.stackView.spacing = self.spacing
+        }
+    }
+    
+    public var isScrollEnabled: Bool = true {
+        didSet {
+            self.scrollView.isScrollEnabled = self.isScrollEnabled
+        }
+    }
+    
+    public var stackInsets: UIEdgeInsets = .zero {
+        didSet {
+            self.setupViews()
+        }
+    }
+    
     public init(axis: NSLayoutConstraint.Axis) {
         super.init(frame: .zero)
         self.axis = axis
@@ -40,10 +58,10 @@ open class ScrollStackView: UIView {
         self.stackView.axis = self.axis
         self.scrollView.addSubview(self.stackView)
         NSLayoutConstraint.activate([
-            self.stackView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
-            self.stackView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
-            self.stackView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
-            self.stackView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor)
+            self.stackView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor, constant: self.stackInsets.left),
+            self.stackView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor, constant: self.stackInsets.right),
+            self.stackView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: self.stackInsets.top),
+            self.stackView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: self.stackInsets.bottom)
         ])
         
         switch self.axis {
